@@ -1,0 +1,57 @@
+/* ==========================================================================
+   TOKENS · LAYOUT (breakpoints, medidas de casca e empilhamento)
+   --------------------------------------------------------------------------
+   Numeros estruturais que costumam vazar hardcoded pelos componentes
+   (`h-18.75`, `ml-16`, `z-50`...). Centralizados aqui, viram vocabulario:
+   `h-header`, `ml-sidebar`, `z-modal`.
+   ========================================================================== */
+
+@theme {
+  /* ---- Breakpoints ---------------------------------------------------
+     Padrao do Tailwind: sm 40rem · md 48rem · lg 64rem · xl 80rem · 2xl 96rem.
+     Abaixo apenas a adicao de um degrau para celulares grandes: `xs:`.
+     Mudou algum breakpoint? Alinhe com src/core/hooks/useScreenInfo.ts,
+     senao o JS e o CSS passam a discordar sobre o que e "mobile".
+     -------------------------------------------------------------------- */
+  --breakpoint-xs: 30rem; /* 480px */
+
+  /* ---- Medidas da casca da aplicacao ---------------------------------
+     Entram no namespace de espacamento, entao valem para width, height,
+     padding, margin e gap: `h-header`, `pt-header`, `w-sidebar`,
+     `ml-sidebar`, `w-sidebar-open`.
+     -------------------------------------------------------------------- */
+  --spacing-header: 4.6875rem; /* 75px · altura da barra superior */
+  --spacing-sidebar: 4rem; /* 64px · menu lateral recolhido */
+  --spacing-sidebar-open: 16rem; /* 256px · menu lateral expandido */
+  --spacing-page: 1.5rem; /* respiro padrao das paginas */
+
+  /* ---- Larguras maximas de conteudo ----------------------------------
+     Uso: `max-w-app` (casca) e `max-w-reading` (texto corrido; acima de
+     ~75 caracteres por linha a leitura piora).
+     -------------------------------------------------------------------- */
+  --container-app: 80rem; /* 1280px */
+  --container-reading: 42rem; /* 672px */
+}
+
+@layer base {
+  :root {
+    /* ---- Camadas de empilhamento (z-index) --------------------------
+       Escala unica e nomeada para acabar com a corrida de `z-50` vs
+       `z-[999]`. Ha utilities prontas (`z-modal`, `z-toast`, ...) em
+       utilities/index.css; em CSS custom use `z-index: var(--z-modal)`.
+       Deixamos buracos de 100 entre as camadas para caber excecoes.
+       ---------------------------------------------------------------- */
+    --z-base: 0;
+    --z-raised: 10; /* card em hover, linha de tabela ativa */
+    --z-sticky: 100; /* cabecalho de tabela fixo */
+    --z-header: 200; /* barra superior da aplicacao */
+    --z-sidebar: 300; /* menu lateral */
+    --z-dropdown: 400; /* dropdown, autocomplete, select */
+    --z-overlay: 500; /* backdrop escurecido */
+    --z-modal: 600; /* dialog, modal, drawer */
+    --z-popover: 700; /* popover ancorado sobre modal */
+    --z-tooltip: 800; /* tooltip sempre por cima do conteudo */
+    --z-toast: 900; /* notificacoes */
+    --z-max: 9999; /* ultimo recurso (debug, overlay de erro) */
+  }
+}

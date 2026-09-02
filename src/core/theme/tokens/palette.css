@@ -1,0 +1,146 @@
+/* ==========================================================================
+   PALETTE · Primitivas de cor (camada 1 de 2)
+   --------------------------------------------------------------------------
+   Aqui ficam as cores "cruas" do design system. Elas NAO devem ser usadas
+   direto nos componentes -- quem os componentes enxergam sao os tokens
+   semanticos (--primary, --background, ...) definidos em themes/light.css e
+   themes/dark.css, que apenas apontam para as escalas abaixo.
+
+   FORMATO: todo valor e uma TRIPLA HSL sem a funcao `hsl()`
+            ex.: `222 60% 48%`  ->  usado como `hsl(var(--brand-600))`
+   Motivo: permite aplicar opacidade em qualquer lugar
+            ex.: `hsl(var(--brand-600) / 0.12)` ou `bg-primary/12` no Tailwind.
+
+   COMO RETEMATIZAR O PROJETO:
+   1. Troque os "seeds" (matiz + saturacao) logo abaixo. Toda a escala e
+      derivada deles, entao mudar 2 numeros ja rebranda o app inteiro.
+   2. Se a marca exigir cores que nao cabem numa rampa unica (ex.: um verde
+      especifico no 500), sobrescreva apenas aquele degrau na escala.
+   3. Ajustes finos de "onde cada cor aparece" sao feitos em themes/*.css,
+      nao aqui.
+
+   ESCALA: 50 (mais claro) -> 950 (mais escuro). Referencia de uso tipico:
+     50/100  fundos suaves (soft), chips, hovers discretos
+     200/300 bordas e divisores
+     400/500 icones, estados desabilitados, cor "pura" da marca no dark
+     600/700 cor de acao no light (botoes, links), texto sobre fundo claro
+     800/900 superficies do dark mode, texto forte no light
+     950     fundo do dark mode
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* ------------------------------------------------------------------
+       SEEDS -- os unicos numeros que voce precisa trocar para rebrandar.
+       Matiz (0-360) e saturacao (%) de cada familia de cor.
+       Valores atuais = placeholder neutro, sem identidade de marca.
+       ------------------------------------------------------------------ */
+    --brand-hue: 222; /* cor primaria: acoes, links, foco */
+    --brand-sat: 60%;
+
+    --support-hue: 262; /* cor de apoio/destaque (accent) */
+    --support-sat: 55%;
+
+    --neutral-hue: 220; /* cinzas: fundos, textos, bordas */
+    --neutral-sat: 14%; /* 0% = cinza puro | 8-16% = cinza "frio"/harmonico */
+
+    --success-hue: 152;
+    --success-sat: 55%;
+
+    --warning-hue: 38;
+    --warning-sat: 92%;
+
+    --danger-hue: 0;
+    --danger-sat: 72%;
+
+    --info-hue: 205;
+    --info-sat: 85%;
+
+    /* ------------------------------------------------------------------
+       ESCALA PRIMARIA (brand)
+       ------------------------------------------------------------------ */
+    --brand-50: var(--brand-hue) var(--brand-sat) 97%;
+    --brand-100: var(--brand-hue) var(--brand-sat) 94%;
+    --brand-200: var(--brand-hue) var(--brand-sat) 87%;
+    --brand-300: var(--brand-hue) var(--brand-sat) 78%;
+    --brand-400: var(--brand-hue) var(--brand-sat) 66%;
+    --brand-500: var(--brand-hue) var(--brand-sat) 56%;
+    --brand-600: var(--brand-hue) var(--brand-sat) 48%;
+    --brand-700: var(--brand-hue) var(--brand-sat) 40%;
+    --brand-800: var(--brand-hue) var(--brand-sat) 32%;
+    --brand-900: var(--brand-hue) var(--brand-sat) 25%;
+    --brand-950: var(--brand-hue) var(--brand-sat) 16%;
+
+    /* ------------------------------------------------------------------
+       ESCALA DE APOIO (support) -- vira o `accent` nos tokens semanticos
+       ------------------------------------------------------------------ */
+    --support-50: var(--support-hue) var(--support-sat) 97%;
+    --support-100: var(--support-hue) var(--support-sat) 94%;
+    --support-200: var(--support-hue) var(--support-sat) 87%;
+    --support-300: var(--support-hue) var(--support-sat) 78%;
+    --support-400: var(--support-hue) var(--support-sat) 66%;
+    --support-500: var(--support-hue) var(--support-sat) 56%;
+    --support-600: var(--support-hue) var(--support-sat) 48%;
+    --support-700: var(--support-hue) var(--support-sat) 40%;
+    --support-800: var(--support-hue) var(--support-sat) 32%;
+    --support-900: var(--support-hue) var(--support-sat) 25%;
+    --support-950: var(--support-hue) var(--support-sat) 16%;
+
+    /* ------------------------------------------------------------------
+       ESCALA NEUTRA -- 90% da interface sai daqui
+       ------------------------------------------------------------------ */
+    --neutral-50: var(--neutral-hue) var(--neutral-sat) 98%;
+    --neutral-100: var(--neutral-hue) var(--neutral-sat) 96%;
+    --neutral-200: var(--neutral-hue) var(--neutral-sat) 91%;
+    --neutral-300: var(--neutral-hue) var(--neutral-sat) 84%;
+    --neutral-400: var(--neutral-hue) var(--neutral-sat) 64%;
+    --neutral-500: var(--neutral-hue) var(--neutral-sat) 47%;
+    --neutral-600: var(--neutral-hue) var(--neutral-sat) 37%;
+    --neutral-700: var(--neutral-hue) var(--neutral-sat) 29%;
+    --neutral-800: var(--neutral-hue) var(--neutral-sat) 21%;
+    --neutral-900: var(--neutral-hue) var(--neutral-sat) 14%;
+    --neutral-950: var(--neutral-hue) var(--neutral-sat) 8%;
+
+    /* ------------------------------------------------------------------
+       ESCALAS DE ESTADO (feedback)
+       Menos degraus: so o necessario para fundo suave, cor solida e texto.
+       ------------------------------------------------------------------ */
+    --success-50: var(--success-hue) var(--success-sat) 96%;
+    --success-100: var(--success-hue) var(--success-sat) 90%;
+    --success-500: var(--success-hue) var(--success-sat) 45%;
+    --success-600: var(--success-hue) var(--success-sat) 38%;
+    --success-700: var(--success-hue) var(--success-sat) 30%;
+    --success-900: var(--success-hue) var(--success-sat) 18%;
+    --success-950: var(--success-hue) var(--success-sat) 12%;
+
+    --warning-50: var(--warning-hue) var(--warning-sat) 96%;
+    --warning-100: var(--warning-hue) var(--warning-sat) 88%;
+    --warning-500: var(--warning-hue) var(--warning-sat) 50%;
+    --warning-600: var(--warning-hue) var(--warning-sat) 43%;
+    --warning-700: var(--warning-hue) var(--warning-sat) 34%;
+    --warning-900: var(--warning-hue) var(--warning-sat) 20%;
+    --warning-950: var(--warning-hue) var(--warning-sat) 13%;
+
+    --danger-50: var(--danger-hue) var(--danger-sat) 97%;
+    --danger-100: var(--danger-hue) var(--danger-sat) 93%;
+    --danger-500: var(--danger-hue) var(--danger-sat) 55%;
+    --danger-600: var(--danger-hue) var(--danger-sat) 47%;
+    --danger-700: var(--danger-hue) var(--danger-sat) 39%;
+    --danger-900: var(--danger-hue) var(--danger-sat) 24%;
+    --danger-950: var(--danger-hue) var(--danger-sat) 15%;
+
+    --info-50: var(--info-hue) var(--info-sat) 96%;
+    --info-100: var(--info-hue) var(--info-sat) 91%;
+    --info-500: var(--info-hue) var(--info-sat) 50%;
+    --info-600: var(--info-hue) var(--info-sat) 42%;
+    --info-700: var(--info-hue) var(--info-sat) 34%;
+    --info-900: var(--info-hue) var(--info-sat) 20%;
+    --info-950: var(--info-hue) var(--info-sat) 13%;
+
+    /* ------------------------------------------------------------------
+       ABSOLUTOS -- nao mudam entre temas
+       ------------------------------------------------------------------ */
+    --white: 0 0% 100%;
+    --black: 0 0% 0%;
+  }
+}

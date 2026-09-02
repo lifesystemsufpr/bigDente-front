@@ -1,0 +1,108 @@
+/* ==========================================================================
+   THEME · DARK (modo escuro)  ->  aplicado na classe `.dark`
+   --------------------------------------------------------------------------
+   A classe e alternada no elemento <html> por src/core/theme/ThemeContext.tsx.
+   Este arquivo NAO cria tokens novos: ele apenas reatribui os mesmos nomes
+   definidos em themes/light.css. Adicionou um token la? Adicione aqui tambem.
+
+   POR QUE OS VALORES NAO SAO SIMPLESMENTE "INVERTIDOS"
+   - Superficie sobe conforme a elevacao: background (950) < card (900).
+   - A cor de marca fica MAIS CLARA (500/400) para nao sumir no fundo escuro.
+   - Fundos "soft" viram os degraus 900/950 da propria familia, nunca os 50.
+   - Texto branco puro cansa a vista: usamos neutral-50 no lugar de #ffffff.
+   - Sombra quase nao aparece no escuro -> compensamos com opacidade maior
+     (--shadow-strength) e bordas um pouco mais presentes.
+   ========================================================================== */
+
+@layer base {
+  .dark {
+    /* 1. SUPERFICIES --------------------------------------------------- */
+    --background: var(--neutral-950);
+    --foreground: var(--neutral-50);
+
+    --card: var(--neutral-900);
+    --card-foreground: var(--neutral-50);
+
+    --popover: var(--neutral-900);
+    --popover-foreground: var(--neutral-50);
+
+    --overlay: var(--black);
+
+    /* 2. MARCA --------------------------------------------------------- */
+    --primary: var(--brand-500);
+    --primary-foreground: var(--white);
+    --primary-hover: var(--brand-400);
+    --primary-active: var(--brand-300);
+    --primary-soft: var(--brand-950);
+    --primary-soft-foreground: var(--brand-200);
+
+    --secondary: var(--neutral-800);
+    --secondary-foreground: var(--neutral-50);
+    --secondary-hover: var(--neutral-700);
+    --secondary-active: var(--neutral-600);
+    --secondary-soft: var(--neutral-900);
+    --secondary-soft-foreground: var(--neutral-300);
+
+    --accent: var(--support-500);
+    --accent-foreground: var(--white);
+    --accent-hover: var(--support-400);
+    --accent-active: var(--support-300);
+    --accent-soft: var(--support-950);
+    --accent-soft-foreground: var(--support-200);
+
+    /* 3. ESTADOS / FEEDBACK -------------------------------------------- */
+    --destructive: var(--danger-500);
+    --destructive-foreground: var(--white);
+    --destructive-hover: var(--danger-600);
+    --destructive-active: var(--danger-700);
+    --destructive-soft: var(--danger-950);
+    --destructive-soft-foreground: var(--danger-100);
+
+    --success: var(--success-500);
+    --success-foreground: var(--success-950);
+    --success-hover: var(--success-600);
+    --success-soft: var(--success-950);
+    --success-soft-foreground: var(--success-100);
+
+    --warning: var(--warning-500);
+    --warning-foreground: var(--warning-950);
+    --warning-hover: var(--warning-600);
+    --warning-soft: var(--warning-950);
+    --warning-soft-foreground: var(--warning-100);
+
+    --info: var(--info-500);
+    --info-foreground: var(--info-950);
+    --info-hover: var(--info-600);
+    --info-soft: var(--info-950);
+    --info-soft-foreground: var(--info-100);
+
+    /* 4. NEUTROS DE APOIO ---------------------------------------------- */
+    --muted: var(--neutral-800);
+    --muted-foreground: var(--neutral-400);
+
+    /* 5. CONTORNOS, CAMPOS E FOCO -------------------------------------- */
+    --border: var(--neutral-800);
+    --border-strong: var(--neutral-700);
+    --input: var(--neutral-700);
+    --ring: var(--brand-500);
+
+    /* 6. NAVEGACAO ------------------------------------------------------ */
+    --sidebar: var(--neutral-900);
+    --sidebar-foreground: var(--neutral-300);
+    --sidebar-border: var(--neutral-800);
+    --sidebar-accent: var(--brand-950);
+    --sidebar-accent-foreground: var(--brand-200);
+
+    /* 7. DADOS ---------------------------------------------------------- */
+    --chart-1: var(--brand-400);
+    --chart-2: var(--support-400);
+    --chart-3: var(--success-500);
+    --chart-4: var(--warning-500);
+    --chart-5: var(--info-500);
+    --chart-6: var(--danger-500);
+
+    /* 8. ELEVACAO ------------------------------------------------------- */
+    --shadow-color: var(--black);
+    --shadow-strength: 0.45;
+  }
+}

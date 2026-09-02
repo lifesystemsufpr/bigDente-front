@@ -1,0 +1,146 @@
+/* ==========================================================================
+   THEME · LIGHT (modo claro)  ->  aplicado em :root
+   --------------------------------------------------------------------------
+   Camada 2 de 2 das cores: o CONTRATO SEMANTICO.
+   Cada token abaixo responde "para que serve", nunca "qual cor e".
+   Os componentes consomem SOMENTE estes nomes (via classes do Tailwind, como
+   `bg-primary` / `text-muted-foreground`, ou via `hsl(var(--primary))`), o que
+   permite trocar a paleta inteira sem tocar em um unico componente.
+
+   REGRAS DO CONTRATO
+   - Todo valor e uma tripla HSL (`H S% L%`), sem `hsl()`. Ver tokens/palette.css.
+   - Todo par `X` / `X-foreground` deve ter contraste AA (>= 4.5:1 para texto).
+   - Todo token declarado aqui PRECISA existir tambem em themes/dark.css.
+   - Prefira apontar para um degrau da paleta (`var(--brand-600)`) a escrever
+     um valor solto; valor solto so quando a paleta nao cobrir o caso.
+
+   SUFIXOS PADRAO
+     (sem sufixo)      cor solida de fundo/preenchimento
+     -foreground       conteudo (texto/icone) por cima da cor solida
+     -hover            estado :hover da cor solida
+     -active           estado :active / pressionado
+     -soft             fundo suave (badge, alerta, chip, linha selecionada)
+     -soft-foreground  conteudo por cima do fundo suave
+   ========================================================================== */
+
+@layer base {
+  :root {
+    /* ==================================================================
+       1. SUPERFICIES
+       Hierarquia de profundidade: background < card/popover.
+       ================================================================== */
+    --background: var(--neutral-50); /* fundo da aplicacao */
+    --foreground: var(--neutral-900); /* texto padrao */
+
+    --card: var(--white); /* cards, tabelas, paineis */
+    --card-foreground: var(--neutral-900);
+
+    --popover: var(--white); /* dropdown, tooltip, autocomplete */
+    --popover-foreground: var(--neutral-900);
+
+    /* backdrop de modal/drawer. Sempre usado com alpha:
+       bg-[hsl(var(--overlay)/0.5)] ou a utility `.overlay` */
+    --overlay: var(--neutral-950);
+
+    /* ==================================================================
+       2. MARCA
+       ================================================================== */
+    /* Primaria: acao principal, links, foco, itens ativos */
+    --primary: var(--brand-600);
+    --primary-foreground: var(--white);
+    --primary-hover: var(--brand-700);
+    --primary-active: var(--brand-800);
+    --primary-soft: var(--brand-50);
+    --primary-soft-foreground: var(--brand-700);
+
+    /* Secundaria: acao neutra (botao "Cancelar", toolbar, filtros) */
+    --secondary: var(--neutral-100);
+    --secondary-foreground: var(--neutral-900);
+    --secondary-hover: var(--neutral-200);
+    --secondary-active: var(--neutral-300);
+    --secondary-soft: var(--neutral-50);
+    --secondary-soft-foreground: var(--neutral-700);
+
+    /* Accent: destaque de apoio (tags, graficos, chamadas visuais) */
+    --accent: var(--support-500);
+    --accent-foreground: var(--white);
+    --accent-hover: var(--support-600);
+    --accent-active: var(--support-700);
+    --accent-soft: var(--support-50);
+    --accent-soft-foreground: var(--support-700);
+
+    /* ==================================================================
+       3. ESTADOS / FEEDBACK
+       ================================================================== */
+    /* Destrutivo (excluir, erro). `destructive` e o nome historico do token
+       de erro; mantido para compatibilidade com os componentes existentes. */
+    --destructive: var(--danger-600);
+    --destructive-foreground: var(--white);
+    --destructive-hover: var(--danger-700);
+    --destructive-active: var(--danger-900);
+    --destructive-soft: var(--danger-50);
+    --destructive-soft-foreground: var(--danger-700);
+
+    --success: var(--success-600);
+    --success-foreground: var(--white);
+    --success-hover: var(--success-700);
+    --success-soft: var(--success-50);
+    --success-soft-foreground: var(--success-700);
+
+    --warning: var(--warning-500);
+    --warning-foreground: var(--warning-950); /* amarelo pede texto escuro */
+    --warning-hover: var(--warning-600);
+    --warning-soft: var(--warning-50);
+    --warning-soft-foreground: var(--warning-700);
+
+    --info: var(--info-600);
+    --info-foreground: var(--white);
+    --info-hover: var(--info-700);
+    --info-soft: var(--info-50);
+    --info-soft-foreground: var(--info-700);
+
+    /* ==================================================================
+       4. NEUTROS DE APOIO
+       ================================================================== */
+    --muted: var(--neutral-100); /* fundo apagado: skeleton, zebra, disabled */
+    --muted-foreground: var(--neutral-600); /* texto secundario, placeholder */
+
+    /* ==================================================================
+       5. CONTORNOS, CAMPOS E FOCO
+       ================================================================== */
+    --border: var(--neutral-200); /* divisores e bordas padrao */
+    --border-strong: var(--neutral-300); /* bordas com mais presenca */
+    --input: var(--neutral-300); /* borda de campos de formulario */
+    --ring: var(--brand-600); /* anel de foco (acessibilidade) */
+
+    /* ==================================================================
+       6. NAVEGACAO (header / sidebar)
+       Grupo proprio para permitir uma barra escura dentro de um tema claro
+       sem gambiarra nos componentes de layout.
+       ================================================================== */
+    --sidebar: var(--white);
+    --sidebar-foreground: var(--neutral-700);
+    --sidebar-border: var(--neutral-200);
+    --sidebar-accent: var(--brand-50); /* item ativo / hover */
+    --sidebar-accent-foreground: var(--brand-700);
+
+    /* ==================================================================
+       7. DADOS (graficos e series)
+       Sequencia pensada para ser distinguivel entre si; troque pelas cores
+       da marca quando o tema definitivo chegar.
+       ================================================================== */
+    --chart-1: var(--brand-600);
+    --chart-2: var(--support-500);
+    --chart-3: var(--success-500);
+    --chart-4: var(--warning-500);
+    --chart-5: var(--info-500);
+    --chart-6: var(--danger-500);
+
+    /* ==================================================================
+       8. ELEVACAO
+       Cor e intensidade das sombras (consumidas em tokens/shadows.css).
+       ================================================================== */
+    --shadow-color: var(--neutral-900);
+    --shadow-strength: 0.1;
+  }
+}

@@ -1,0 +1,66 @@
+/* ==========================================================================
+   GLOBALS · Ponto de entrada do tema
+   --------------------------------------------------------------------------
+   Unico arquivo de estilo importado pela aplicacao (src/main.tsx).
+   Ele nao contem regras proprias: apenas monta o tema na ordem correta.
+
+   ARQUITETURA (do mais abstrato para o mais concreto)
+
+     tokens/palette.css   Primitivas: escalas de cor cruas (brand-500, ...).
+                          Responde "quais cores existem".
+     themes/light.css     Contrato semantico do modo claro (:root).
+     themes/dark.css      Contrato semantico do modo escuro (.dark).
+                          Respondem "onde cada cor e usada".
+     tokens/*.css         Registro dos tokens como utilities do Tailwind
+                          (cor, tipografia, raio, sombra, movimento, layout).
+     base/*.css           Variantes customizadas e estilos de elemento nativo.
+     utilities/index.css  Classes compostas do design system.
+
+   REGRA DE OURO
+   Componente nunca fala com a paleta. Ele usa o token semantico
+   (`bg-primary`, `text-muted-foreground`, `border-border`), a paleta so e
+   referenciada dentro de themes/*.css. E isso que permite trocar a marca
+   inteira sem abrir um unico .tsx.
+
+   POR ONDE COMECAR AO APLICAR O TEMA DEFINITIVO
+   1. tokens/palette.css  -> ajustar os "seeds" (matiz + saturacao).
+   2. themes/light.css e themes/dark.css -> so se algum token precisar
+      apontar para outro degrau da escala.
+   3. tokens/radius.css   -> `--radius` define o quao arredondada e a UI.
+   Detalhes e exemplos em src/core/theme/README.md.
+
+   A ORDEM DOS @import ABAIXO IMPORTA -- e todos precisam vir antes de
+   qualquer outra regra CSS (restricao da especificacao, nao do Tailwind).
+   ========================================================================== */
+
+/* 1. Fontes remotas.
+      Precisa ser o primeiro @import do bundle. Para trocar a fonte, ver as
+      instrucoes em tokens/typography.css. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* 2. Tailwind (preflight + engine de utilities). */
+@import "tailwindcss";
+
+/* 3. Variantes customizadas (`dark:`, `hocus:`). */
+@import "./base/variants.css";
+
+/* 4. Primitivas de cor. */
+@import "./tokens/palette.css";
+
+/* 5. Contrato semantico, por modo. */
+@import "./themes/light.css";
+@import "./themes/dark.css";
+
+/* 6. Registro dos tokens no Tailwind (gera as utilities). */
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/radius.css";
+@import "./tokens/shadows.css";
+@import "./tokens/motion.css";
+@import "./tokens/layout.css";
+
+/* 7. Estilos de elemento nativo (body, formularios, foco, scrollbar). */
+@import "./base/reset.css";
+
+/* 8. Classes compostas do design system. */
+@import "./utilities/index.css";

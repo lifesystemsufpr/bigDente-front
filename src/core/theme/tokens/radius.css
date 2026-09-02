@@ -1,0 +1,30 @@
+/* ==========================================================================
+   TOKENS · RAIO DE BORDA
+   --------------------------------------------------------------------------
+   Toda a escala e derivada de UMA variavel: `--radius`.
+   Mude so ela para deixar a interface inteira mais quadrada (0.25rem) ou mais
+   arredondada (0.75rem / 1rem) -- os degraus se ajustam juntos e mantem a
+   proporcao entre um card grande e um botao pequeno.
+
+   Os valores atuais (base 0.5rem) reproduzem exatamente a escala padrao do
+   Tailwind, entao trocar `--radius` e a unica coisa que altera o visual.
+
+   Uso: `rounded-sm` ... `rounded-4xl`, `rounded-full`.
+   Em CSS custom: `border-radius: var(--radius-lg)`.
+   ========================================================================== */
+
+@theme {
+  /* Base do sistema -- o unico numero que voce deveria precisar mudar. */
+  --radius: 0.5rem; /* 8px */
+
+  --radius-none: 0px;
+  --radius-xs: calc(var(--radius) - 6px); /* 2px  · chips, tags minusculas */
+  --radius-sm: calc(var(--radius) - 4px); /* 4px  · inputs densos, checkbox */
+  --radius-md: calc(var(--radius) - 2px); /* 6px  · botoes pequenos */
+  --radius-lg: var(--radius); /* 8px  · botoes, inputs, dropdown */
+  --radius-xl: calc(var(--radius) + 4px); /* 12px · cards */
+  --radius-2xl: calc(var(--radius) + 8px); /* 16px · dialog, modal */
+  --radius-3xl: calc(var(--radius) + 16px); /* 24px · secoes, hero */
+  --radius-4xl: calc(var(--radius) + 24px); /* 32px · blocos decorativos */
+  --radius-full: 9999px; /* pilulas, avatares */
+}

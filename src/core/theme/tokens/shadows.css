@@ -1,0 +1,50 @@
+/* ==========================================================================
+   TOKENS · ELEVACAO (sombras)
+   --------------------------------------------------------------------------
+   As sombras nao usam preto fixo: elas herdam `--shadow-color` e
+   `--shadow-strength`, definidos por tema em themes/light.css e
+   themes/dark.css. Duas consequencias praticas:
+
+   1. No claro a sombra puxa o matiz dos neutros (parece parte do ambiente,
+      nao uma mancha cinza colada por cima).
+   2. No escuro a opacidade sobe automaticamente (0.45 contra 0.1), porque
+      sombra suave simplesmente nao aparece sobre fundo escuro.
+
+   `@theme inline` e obrigatorio aqui: os valores dependem de variaveis que
+   mudam entre claro/escuro e precisam ser resolvidas no elemento que usa a
+   classe, nao no :root.
+
+   Uso: `shadow-2xs` ... `shadow-2xl`, `shadow-none`.
+   Escala mental: xs/sm = encostado na superficie (input, botao),
+   md/lg = flutuando (dropdown, popover), xl/2xl = sobreposto (modal, drawer).
+   ========================================================================== */
+
+@theme inline {
+  --shadow-2xs: 0 1px 1px 0 hsl(var(--shadow-color) / var(--shadow-strength));
+
+  --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / var(--shadow-strength));
+
+  --shadow-sm:
+    0 1px 3px 0 hsl(var(--shadow-color) / var(--shadow-strength)),
+    0 1px 2px -1px hsl(var(--shadow-color) / var(--shadow-strength));
+
+  --shadow-md:
+    0 4px 6px -1px hsl(var(--shadow-color) / var(--shadow-strength)),
+    0 2px 4px -2px hsl(var(--shadow-color) / var(--shadow-strength));
+
+  --shadow-lg:
+    0 10px 15px -3px hsl(var(--shadow-color) / var(--shadow-strength)),
+    0 4px 6px -4px hsl(var(--shadow-color) / var(--shadow-strength));
+
+  --shadow-xl:
+    0 20px 25px -5px hsl(var(--shadow-color) / var(--shadow-strength)),
+    0 8px 10px -6px hsl(var(--shadow-color) / var(--shadow-strength));
+
+  /* Modais e drawers: sombra unica, larga e bem mais densa. */
+  --shadow-2xl: 0 25px 50px -12px
+    hsl(var(--shadow-color) / calc(var(--shadow-strength) * 2.5));
+
+  /* Sombra interna -- util em campos de busca e areas "afundadas". */
+  --inset-shadow-sm: inset 0 2px 4px 0
+    hsl(var(--shadow-color) / calc(var(--shadow-strength) * 0.5));
+}

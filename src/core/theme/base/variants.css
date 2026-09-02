@@ -1,0 +1,22 @@
+/* ==========================================================================
+   BASE · VARIANTES CUSTOMIZADAS
+   --------------------------------------------------------------------------
+   Prefixos que podem ser usados em qualquer classe do Tailwind.
+   ========================================================================== */
+
+/* `dark:` -- alterna pelo CLASSE, nao pela preferencia do sistema.
+   Quem liga/desliga a classe `dark` no <html> e o ThemeContext.tsx (que
+   inicia respeitando `prefers-color-scheme` e persiste a escolha do usuario).
+
+   O seletor cobre o proprio elemento e seus descendentes
+   (`&:where(.dark, .dark *)`), entao `dark:` funciona tambem quando a classe
+   e aplicada a um trecho isolado da pagina -- ex.: um painel escuro dentro de
+   uma tela clara. `:where()` mantem especificidade zero, o que evita que a
+   variante ganhe de outras classes por acidente. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* `hocus:` -- hover + foco por teclado na mesma declaracao.
+   Evita o esquecimento classico de estilizar so o hover e deixar quem navega
+   por Tab sem feedback alguma.
+   Ex.: `hocus:bg-primary-hover` */
+@custom-variant hocus (&:hover, &:focus-visible);

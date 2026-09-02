@@ -1,0 +1,147 @@
+/* ==========================================================================
+   BASE · ESTILOS GLOBAIS DE ELEMENTO
+   --------------------------------------------------------------------------
+   Complementa o preflight do Tailwind com o que e especifico DESTE design
+   system: aplicar os tokens nos elementos nativos (body, formularios,
+   scrollbar, selecao de texto) para que a pagina ja nasca no tema certo.
+
+   Tudo aqui vive em `@layer base`, ou seja, tem prioridade MENOR que
+   qualquer classe utilitaria. Nenhuma regra deste arquivo vai brigar com um
+   `bg-card` escrito no componente.
+   ========================================================================== */
+
+@layer base {
+  /* ------------------------------------------------------------------
+     Compatibilidade de bordas (Tailwind v3 -> v4)
+     No v4 a cor padrao de borda passou a ser `currentColor`, entao um
+     `border-b` sem cor herda a cor do TEXTO -- quase nunca o desejado.
+     A regra abaixo devolve o comportamento do v3 usando o token do tema.
+     Se preferir o padrao do v4 (cor sempre explicita), comente este bloco.
+     ------------------------------------------------------------------ */
+  *,
+  ::before,
+  ::after {
+    border-color: hsl(var(--border));
+  }
+
+  /* ------------------------------------------------------------------
+     Documento
+     ------------------------------------------------------------------ */
+  :root {
+    /* Informa ao navegador o esquema atual: pinta scrollbars, campos de
+       formulario e menus nativos na versao certa. */
+    color-scheme: light;
+
+    font-family: var(--font-sans);
+    line-height: var(--leading-body);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%; /* evita zoom automatico no iOS */
+
+    /* Scrollbar discreta e tematizada (Chrome 121+, Firefox).
+       Para areas internas existe a utility `.scrollbar-thin`. */
+    scrollbar-color: hsl(var(--border-strong)) transparent;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    /* Numeros com largura fixa: colunas de tabela param de dancar. */
+    font-feature-settings: var(--font-feature-numeric);
+  }
+
+  /* Container do React: cria um contexto de empilhamento proprio, o que
+     impede que um z-index solto de dentro da app suba acima dos portais
+     (toasts, modais) montados direto no <body>. */
+  #root {
+    min-height: 100dvh;
+    isolation: isolate;
+  }
+
+  /* ------------------------------------------------------------------
+     Tipografia de elementos
+     ------------------------------------------------------------------ */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    line-height: var(--leading-heading);
+    text-wrap: balance; /* evita titulo com uma palavra orfa na ultima linha */
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono);
+  }
+
+  /* ------------------------------------------------------------------
+     Formularios
+     ------------------------------------------------------------------ */
+  ::placeholder {
+    color: hsl(var(--muted-foreground));
+    opacity: 1; /* Firefox aplica opacidade propria por padrao */
+  }
+
+  /* Cor dos controles nativos (checkbox, radio, range, progress). */
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="range"],
+  progress {
+    accent-color: hsl(var(--primary));
+  }
+
+  /* Cursor de digitacao visivel nos dois temas. */
+  input,
+  textarea,
+  [contenteditable] {
+    caret-color: hsl(var(--primary));
+  }
+
+  /* ------------------------------------------------------------------
+     Foco e selecao
+     ------------------------------------------------------------------ */
+  /* Anel de foco padrao para QUALQUER elemento focavel por teclado.
+     Componentes que desenham o proprio foco usam `focus-visible:outline-none`
+     e sobrescrevem esta regra sem esforco (utilities > base). */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+
+  /* ------------------------------------------------------------------
+     Acessibilidade: respeitar "reduzir movimento" do sistema operacional
+     Vale para todo o app -- nao precisa tratar animacao por animacao.
+     ------------------------------------------------------------------ */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

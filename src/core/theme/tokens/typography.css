@@ -1,0 +1,58 @@
+/* ==========================================================================
+   TOKENS · TIPOGRAFIA
+   --------------------------------------------------------------------------
+   Familias, escala de tamanho e ajustes finos de texto.
+
+   TROCAR A FONTE DO PROJETO (2 passos):
+   1. Ajuste/remova o `@import url(...)` do Google Fonts no topo do globals.css
+      (ele precisa ser o primeiro @import do bundle -- regra do CSS).
+      Alternativa mais rapida em producao: `<link rel="preconnect">` +
+      `<link rel="stylesheet">` no index.html, ou fonte auto-hospedada
+      com @font-face (evita o request extra e o FOUT).
+   2. Troque `--font-sans` abaixo. O fallback nunca deve sumir: enquanto a
+      fonte remota carrega, e ele que segura o layout.
+
+   A escala de tamanhos (text-xs ... text-9xl) e a do Tailwind e continua
+   valendo -- aqui so ACRESCENTAMOS o que faltava. Sobrescrever um degrau
+   existente muda o app inteiro, entao faca isso conscientemente.
+   ========================================================================== */
+
+@theme {
+  /* ---- Familias ------------------------------------------------------
+     `font-sans` e o padrao aplicado em <html> (ver base/reset.css).
+     `font-display` existe para titulos: hoje aponta para a mesma fonte,
+     mas ja deixa o gancho pronto para uma fonte de marca no futuro.
+     -------------------------------------------------------------------- */
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  --font-display: var(--font-sans);
+
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  --font-mono:
+    ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /* ---- Tamanho extra --------------------------------------------------
+     Menor que `text-xs`: legendas de tabela, badges densos, sufixos.
+     -------------------------------------------------------------------- */
+  --text-2xs: 0.6875rem; /* 11px */
+  --text-2xs--line-height: 1rem; /* 16px */
+
+  /* ---- Espacamento entre letras --------------------------------------
+     Complementa `tracking-tight/normal/wide` do Tailwind.
+     -------------------------------------------------------------------- */
+  --tracking-caps: 0.08em; /* rotulos em CAIXA ALTA respiram melhor */
+}
+
+@layer base {
+  :root {
+    /* Ganchos de tipografia usados por base/reset.css e por CSS custom.
+       Nao geram utilities -- sao configuracao de comportamento. */
+    --font-feature-numeric: "tnum" 1; /* numeros tabulares: colunas alinhadas */
+    --leading-body: 1.5; /* altura de linha confortavel para texto corrido */
+    --leading-heading: 1.2; /* titulos pedem linhas mais justas */
+  }
+}

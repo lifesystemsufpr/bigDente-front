@@ -1,7 +1,33 @@
 
 import { Link } from 'react-router-dom';
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { login } from "../services/authService";
 
 export function LoginPage() {
+
+  const [loginValue, setLoginValue] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      await login(loginValue, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erro ao fazer login");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
 
@@ -50,7 +76,13 @@ export function LoginPage() {
             Insira suas credenciais para acessar sua conta.
           </p>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">
+                {error}
+              </div>
+            )}
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="email">
                 E-mail
@@ -58,8 +90,10 @@ export function LoginPage() {
               <input
                 id="email"
                 type="email"
+                value={loginValue}
+                onChange={(e) => setLoginValue(e.target.value)}
                 placeholder="exemplo@clinica.com.br"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
                 required
               />
             </div>
@@ -71,8 +105,10 @@ export function LoginPage() {
               <input
                 id="password"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
                 required
               />
             </div>
@@ -95,19 +131,12 @@ export function LoginPage() {
 
             <button
               type="submit"
-              className="w-full bg-[#002366] text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all shadow-md mt-6"
+              disabled={loading}
+              className="w-full bg-[#002366] text-white py-3 rounded-lg font-bold text-lg hover:bg-blue-900 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all shadow-md mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Entrar no Sistema
+              {loading ? "Entrando..." : "Entrar no Sistema"}
             </button>
           </form>
-
-          { }
-          <div className="mt-8 text-center text-sm text-gray-600">
-            Não tem uma conta?{' '}
-            <Link to="/cadastro" className="text-[#002366] font-bold hover:underline">
-              Cadastre-se aqui
-            </Link>
-          </div>
 
         </div>
       </div>

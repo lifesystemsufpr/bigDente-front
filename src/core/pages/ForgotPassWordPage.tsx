@@ -52,21 +52,7 @@ export function ForgotPassWordPage() {
                 id="email"
                 type="email" 
                 placeholder="exemplo@clinica.com.br" 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white"
-                required
-              />
-            </div>
-
-            {/* Campo de Nova Senha */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="password">
-                Nova Senha
-              </label>
-              <input 
-                id="password" 
-                type="password" 
-                placeholder="••••••••" 
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
                 required
               />
             </div>

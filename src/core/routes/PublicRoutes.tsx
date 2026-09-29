@@ -1,7 +1,8 @@
 import {Navigate, Route } from "react-router-dom";
 import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage";
 import { ForgotPassWordPage } from "../pages/ForgotPassWordPage";
+import ProtectedRoute from "../routes/Protected"
+
 export function PublicRoutes() {
  return (
     <>
@@ -10,7 +11,8 @@ export function PublicRoutes() {
       
       {/* 2. Aqui nós definimos o que aparece na tela quando ele está no /login */}
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/cadastro" element={<RegisterPage />} />
+      <Route element={<ProtectedRoute />}>
+      </Route>
       <Route path="/redefinir-senha" element={<ForgotPassWordPage />} />
     </>
     

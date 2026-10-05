@@ -5,10 +5,7 @@ export function ForgotPassWordPage() {
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
       
-      {/* Lado Esquerdo - Branding (Focado em Segurança/Senha) */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#002366] flex-col items-center justify-center p-12">
-        
-        {/* Ícone de Cadeado (Representando a Senha/Segurança) */}
         <div className="mb-8 p-6 bg-white/10 rounded-full shadow-lg">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -30,8 +27,6 @@ export function ForgotPassWordPage() {
           Recuperação de Acesso
         </h2>
       </div>
-
-      {/* Lado Direito - Formulário de Redefinição */}
       <div className="flex w-full lg:w-1/2 items-center justify-center bg-white p-8 lg:p-16">
         <div className="w-full max-w-md">
           
@@ -43,7 +38,6 @@ export function ForgotPassWordPage() {
           </p>
 
           <form className="space-y-5">
-            {/* Campo de E-mail */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="email">
                 E-mail
@@ -64,8 +58,6 @@ export function ForgotPassWordPage() {
               Redefinir Senha
             </button>
           </form>
-
-          {/* LINK PARA VOLTAR AO LOGIN */}
           <div className="mt-8 text-center text-sm text-gray-600">
             Lembrou da sua senha?{' '}
             <Link to="/" className="text-[#002366] font-bold hover:underline">

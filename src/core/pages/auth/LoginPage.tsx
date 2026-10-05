@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../services/authService";
+import { login } from "../../services/authService";
 
 export function LoginPage() {
 

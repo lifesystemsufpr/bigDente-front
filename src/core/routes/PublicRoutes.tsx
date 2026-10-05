@@ -1,6 +1,6 @@
 import {Navigate, Route } from "react-router-dom";
-import { LoginPage } from "../pages/LoginPage";
-import { ForgotPassWordPage } from "../pages/ForgotPassWordPage";
+import { LoginPage } from "../pages/auth/LoginPage";
+import { ForgotPassWordPage } from "../pages/auth/ForgotPassWordPage";
 import ProtectedRoute from "../routes/Protected"
 
 export function PublicRoutes() {

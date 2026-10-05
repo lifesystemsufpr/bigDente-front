@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 export function RegisterPage() {
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
-      
-      {/* Lado Esquerdo - Branding (Sem imagem, focado na cor e no ícone) */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#002366] flex-col items-center justify-center p-12">
-        
-        {/* Ícone de Dente Grande e Decorativo */}
         <div className="mb-8 p-6 bg-white/10 rounded-full shadow-lg">
            <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -31,8 +27,6 @@ export function RegisterPage() {
           Cadastre novos profissionais e organize o fluxo com diferentes níveis de acesso.
         </p>
       </div>
-
-      {/* Lado Direito - Formulário de Cadastro */}
       <div className="flex w-full lg:w-1/2 items-center justify-center bg-white p-8 lg:p-16">
         <div className="w-full max-w-md">
           
@@ -44,7 +38,6 @@ export function RegisterPage() {
           </p>
 
           <form className="space-y-5">
-            {/* Campo: Nome (name: string) */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="name">
                 Nome Completo
@@ -57,8 +50,6 @@ export function RegisterPage() {
                 required
               />
             </div>
-
-            {/* Campo: E-mail (email: string) */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="email">
                 E-mail
@@ -71,7 +62,6 @@ export function RegisterPage() {
                 required
               />
             </div>
-            {/* Campo: Senha (Adicionado logicamente) */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="password">
                 Senha
@@ -92,8 +82,6 @@ export function RegisterPage() {
               Criar Conta
             </button>
           </form>
-          
-          {/* LINK PARA VOLTAR AO LOGIN */}
           <div className="mt-8 text-center text-sm text-gray-600">
             Já possui uma conta?{' '}
             <Link to="/" className="text-[#002366] font-bold hover:underline">

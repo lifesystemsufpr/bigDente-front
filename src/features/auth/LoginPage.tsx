@@ -1,12 +1,13 @@
-
 import { Link } from 'react-router-dom';
-import { useState} from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../services/authService";
+import { login } from "../../core/services/authService";
+import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 export function LoginPage() {
 
   const [loginValue, setLoginValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -102,15 +103,27 @@ export function LoginPage() {
               <label className="block text-sm font-semibold text-gray-700 mb-1" htmlFor="password">
                 Senha
               </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
-                required
-              />
+
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#002366] focus:border-[#002366] outline-none transition-all bg-gray-50 focus:bg-white text-gray-900"
+                  required
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700"
+                  aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
+                >
+                 {showPassword ? <EyeOffIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
+                </button>
+              </div>
             </div>
 
             <div className="flex items-center justify-between text-sm">

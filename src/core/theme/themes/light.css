@@ -46,12 +46,12 @@
        2. MARCA
        ================================================================== */
     /* Primaria: acao principal, links, foco, itens ativos */
-    --primary: var(--brand-600);
+    --primary: var(--brand-900);
     --primary-foreground: var(--white);
-    --primary-hover: var(--brand-700);
-    --primary-active: var(--brand-800);
+    --primary-hover: var(--brand-800);
+    --primary-active: var(--brand-950);
     --primary-soft: var(--brand-50);
-    --primary-soft-foreground: var(--brand-700);
+    --primary-soft-foreground: var(--brand-900);
 
     /* Secundaria: acao neutra (botao "Cancelar", toolbar, filtros) */
     --secondary: var(--neutral-100);
@@ -111,7 +111,7 @@
     --border: var(--neutral-200); /* divisores e bordas padrao */
     --border-strong: var(--neutral-300); /* bordas com mais presenca */
     --input: var(--neutral-300); /* borda de campos de formulario */
-    --ring: var(--brand-600); /* anel de foco (acessibilidade) */
+    --ring: var(--brand-900); /* anel de foco (acessibilidade) */
 
     /* ==================================================================
        6. NAVEGACAO (header / sidebar)
@@ -122,14 +122,14 @@
     --sidebar-foreground: var(--neutral-700);
     --sidebar-border: var(--neutral-200);
     --sidebar-accent: var(--brand-50); /* item ativo / hover */
-    --sidebar-accent-foreground: var(--brand-700);
+    --sidebar-accent-foreground: var(--brand-900);
 
     /* ==================================================================
        7. DADOS (graficos e series)
        Sequencia pensada para ser distinguivel entre si; troque pelas cores
        da marca quando o tema definitivo chegar.
        ================================================================== */
-    --chart-1: var(--brand-600);
+    --chart-1: var(--brand-900);
     --chart-2: var(--support-500);
     --chart-3: var(--success-500);
     --chart-4: var(--warning-500);

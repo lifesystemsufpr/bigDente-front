@@ -42,7 +42,7 @@ export function LoginPage() {
           />
         </div>
         <h2 className="text-white text-3xl font-bold mt-4 text-center">
-          Sistema BigDente
+          ToothSystem
         </h2>
       </div>
 

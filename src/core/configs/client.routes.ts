@@ -9,5 +9,9 @@ export const clientRoutes = {
     REGISTER: "/register",
   },
 
+  STUDENTS: {
+    MANAGE: "/ManagerStudents",
+  },
+
   PROFILE: "/profile",
 };

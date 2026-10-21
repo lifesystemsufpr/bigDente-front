@@ -3,9 +3,9 @@
 Design system em CSS puro sobre Tailwind v4. Ponto de entrada: `globals.css`
 (importado uma unica vez em `src/main.tsx`).
 
-> **Estado atual:** a paleta e um _placeholder neutro_. O tema definitivo ainda
-> vai chegar — a estrutura abaixo existe justamente para que isso seja trocar
-> numeros em um arquivo, e nao caçar cor em componente.
+> **Identidade visual:** azul-marinho BigDente no tema claro, com um tema
+> escuro complementar. As cores da marca ficam em `tokens/palette.css`; os
+> componentes usam os tokens semanticos para manter a aparencia consistente.
 
 ## Mapa dos arquivos
 
@@ -42,22 +42,23 @@ theme/
 `bg-primary`, `text-muted-foreground`, `border-border`. Trocar a marca vira uma
 edicao em `palette.css` — nenhum `.tsx` e aberto.
 
-## Como aplicar o tema definitivo
+## Como ajustar a identidade visual
 
 1. **Cores** — em `tokens/palette.css`, ajuste os _seeds_ (matiz + saturacao de
    cada familia). Toda a escala e derivada deles:
 
    ```css
-   --brand-hue: 222;
-   --brand-sat: 60%;
+   --brand-hue: 219.4;
+   --brand-sat: 100%;
    ```
 
-   Se a marca tiver um valor exato que nao cabe na rampa (um verde especifico
-   no `500`, por exemplo), sobrescreva so aquele degrau.
+   A identidade atual usa o `brand-900` como azul-marinho das acoes no tema
+   claro; ele corresponde ao azul `#002366` usado nas paginas.
 
-2. **Distribuicao** — em `themes/light.css` / `themes/dark.css`, so se algum
-   token precisar apontar para outro degrau (ex.: `--primary` no `700` em vez
-   do `600`). Todo token criado no claro precisa existir no escuro.
+2. **Distribuicao** — em `themes/light.css` / `themes/dark.css`, escolha os
+   degraus adequados para cada token (por exemplo, `--primary` aponta para o
+   `brand-900` no claro e para o `brand-500` no escuro). Todo token criado no
+   claro precisa existir no escuro.
 
 3. **Forma** — em `tokens/radius.css`, `--radius` controla o arredondamento de
    toda a interface a partir de um numero.

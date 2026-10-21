@@ -22,9 +22,9 @@
    ESCALA: 50 (mais claro) -> 950 (mais escuro). Referencia de uso tipico:
      50/100  fundos suaves (soft), chips, hovers discretos
      200/300 bordas e divisores
-     400/500 icones, estados desabilitados, cor "pura" da marca no dark
-     600/700 cor de acao no light (botoes, links), texto sobre fundo claro
-     800/900 superficies do dark mode, texto forte no light
+     400/500 cor "pura" da marca no dark
+     600/700 tons intermediarios da marca
+     800/900 acoes e texto forte no light (conforme themes/light.css)
      950     fundo do dark mode
    ========================================================================== */
 
@@ -33,10 +33,10 @@
     /* ------------------------------------------------------------------
        SEEDS -- os unicos numeros que voce precisa trocar para rebrandar.
        Matiz (0-360) e saturacao (%) de cada familia de cor.
-       Valores atuais = placeholder neutro, sem identidade de marca.
+       Identidade visual BigDente: azul-marinho e neutros frios.
        ------------------------------------------------------------------ */
-    --brand-hue: 222; /* cor primaria: acoes, links, foco */
-    --brand-sat: 60%;
+    --brand-hue: 219.4; /* cor primaria: acoes, links, foco */
+    --brand-sat: 100%;
 
     --support-hue: 262; /* cor de apoio/destaque (accent) */
     --support-sat: 55%;
@@ -68,7 +68,8 @@
     --brand-600: var(--brand-hue) var(--brand-sat) 48%;
     --brand-700: var(--brand-hue) var(--brand-sat) 40%;
     --brand-800: var(--brand-hue) var(--brand-sat) 32%;
-    --brand-900: var(--brand-hue) var(--brand-sat) 25%;
+    /* Azul-marinho usado nas acoes do tema claro. */
+    --brand-900: var(--brand-hue) var(--brand-sat) 20%;
     --brand-950: var(--brand-hue) var(--brand-sat) 16%;
 
     /* ------------------------------------------------------------------

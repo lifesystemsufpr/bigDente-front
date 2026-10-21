@@ -12,5 +12,9 @@ export const apiRoutes = {
     LOGIN: `${API_URL_BASE}/auth/login`,
   },
 
+  STUDENTS: {
+    CREATE: `${API_URL_BASE}/students`,
+  },
+
   PARTICIPANTS: {},
 };

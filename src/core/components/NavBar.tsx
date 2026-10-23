@@ -8,20 +8,22 @@ type NavItem = {
   label: string;
   path: string;
   icon: ComponentType<{ size?: number }>;
+  active?: boolean;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { label: "Home", path: "/", icon: Home },
+  { label: "Painel geral", path: "/", icon: Home, active: false },
   {
-    label: "Participantes",
-    path: clientRoutes.PARTICIPANTS.LIST,
+    label: "Gestão de Alunos",
+    path: clientRoutes.STUDENTS.MANAGE,
     icon: Users2,
+    active: true,
   },
-  { label: "Avaliações", path: clientRoutes.IVCF.LIST, icon: ClipboardList },
   {
-    label: "Solicitações",
-    path: clientRoutes.SHARE_REQUESTS.LIST,
+    label: "Relatórios e Auditorias",
+    path: clientRoutes.AUTH.LOGIN,
     icon: Share2,
+    active: false,
   },
 ];
 
@@ -76,7 +78,7 @@ export default function NavBar({
           "border-r border-border bg-card/95 shadow-lg backdrop-blur-md",
           isMobile
             ? "fixed left-0 top-0 z-50 h-screen w-64 transition-transform duration-300 ease-out"
-            : "group/nav fixed left-0 top-19 z-30 h-[calc(100vh-4.75rem)] w-16 transition-[width] duration-300 ease-out hover:w-64",
+            : "group/nav fixed left-0 top-10 z-30 h-full w-16 transition-[width] duration-300 ease-out hover:w-64",
           isMobile && (mobileOpen ? "translate-x-0" : "-translate-x-full"),
         )}
       >
@@ -92,6 +94,7 @@ export default function NavBar({
                   key={item.path}
                   onClick={() => handleNavigate(item.path)}
                   aria-label={item.label}
+                  disabled={!item.active}
                   title={!isMobile ? item.label : undefined}
                   className={cn(
                     "inline-flex w-full items-center rounded-lg text-sm font-medium tracking-tight",

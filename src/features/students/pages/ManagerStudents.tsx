@@ -3,18 +3,37 @@ import { Mail } from "lucide-react";
 import { Avatar } from "../../../core/components/ui/Avatar";
 import { Badge } from "../../../core/components/ui/Badge";
 import { Drawer } from "../../../core/components/ui/Drawer";
+import { Modal } from "../../../core/components/ui/Modal";
 import type { Student } from "../types";
 import { ListStudents } from "../containers/ListStudents";
 import { statusClass } from "../consts";
 import { PageHeader } from "../components/PageHeader";
+import { RegisterStudents } from "../containers/RegisterStudents";
 
 export const ManagerStudents = () => {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [registerFocusRequest, setRegisterFocusRequest] = useState(0);
+
+  const focusRegisterForm = () => {
+    setIsRegistering(true);
+    setRegisterFocusRequest((request) => request + 1);
+  };
 
   return (
     <main className="bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
       <div className="space-y-6">
-        <PageHeader />
+        <PageHeader onRegisterClick={focusRegisterForm} />
+
+        <Modal
+          open={isRegistering}
+          onClose={() => setIsRegistering(false)}
+          title="Cadastrar estudante"
+          description="Preencha os dados para cadastrar um novo estudante."
+          size="md"
+        >
+            <RegisterStudents focusRequest={registerFocusRequest} />
+        </Modal>
 
         <ListStudents onSelectStudent={setSelectedStudent} />
       </div>

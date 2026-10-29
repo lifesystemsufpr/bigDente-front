@@ -1,5 +1,4 @@
 import { Box, Table } from "@/core/components/ui";
-import { useState } from "react";
 import type { Student } from "../types";
 import { columnsTable, studentsMock } from "../consts";
 
@@ -8,8 +7,6 @@ interface ListStudentsProps {
 }
 
 export function ListStudents({ onSelectStudent }: ListStudentsProps) {
-  const [students, setStudents] = useState<Student[]>(studentsMock);
-
   const activeStudents = studentsMock.filter(
     (student) => student.status === "Ativo",
   ).length;
@@ -56,7 +53,7 @@ export function ListStudents({ onSelectStudent }: ListStudentsProps) {
           </div>
         </Box>
         <Table.Root
-          data={students}
+          data={studentsMock}
           columns={columnsTable}
           getRowId={(row) => row.id}
           pageSize={10}

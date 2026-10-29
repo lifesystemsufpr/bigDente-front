@@ -78,7 +78,7 @@ export default function NavBar({
           "border-r border-border bg-card/95 shadow-lg backdrop-blur-md",
           isMobile
             ? "fixed left-0 top-0 z-50 h-screen w-64 transition-transform duration-300 ease-out"
-            : "group/nav fixed left-0 top-10 z-30 h-full w-16 transition-[width] duration-300 ease-out hover:w-64",
+            : "group/nav fixed bottom-0 left-0 top-header z-sidebar w-16 transition-[width] duration-300 ease-out hover:w-64",
           isMobile && (mobileOpen ? "translate-x-0" : "-translate-x-full"),
         )}
       >

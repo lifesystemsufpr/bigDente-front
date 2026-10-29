@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import { Box } from "../components/ui";
-import { Header } from "../components/Header";
 
 export function MainLayout() {
   return (
@@ -11,12 +10,9 @@ export function MainLayout() {
       direction="column"
       className="bg-background"
     >
-      <Box display="flex" direction="row" className="bg-muted/50">
-        <Header />
-      </Box>
-      <Box display="flex" direction="column">
+      <Box display="flex" direction="column" className="min-h-0 flex-1 pt-header">
         <NavBar />
-        <Box display="flex" direction="column" className="flex-1 mx-32">
+        <Box display="flex" direction="column" className="min-h-0 flex-1 mx-32">
           <Outlet />
         </Box>
       </Box>

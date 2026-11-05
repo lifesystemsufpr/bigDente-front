@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Mail, Plus } from "lucide-react";
+import { Button } from "../../../core/components/ui";
 import { Avatar } from "../../../core/components/ui/Avatar";
 import { Badge } from "../../../core/components/ui/Badge";
 import { Drawer } from "../../../core/components/ui/Drawer";
@@ -23,7 +24,18 @@ export const ManagerStudents = () => {
   return (
     <main className="bg-background px-4 py-8 text-foreground sm:px-6 lg:px-8">
       <div className="space-y-6">
-        <PageHeader onRegisterClick={focusRegisterForm} />
+        <PageHeader />
+
+        <div className="flex justify-end">
+          <Button
+            type="button"
+            leftIcon={<Plus size={18} aria-hidden="true" />}
+            className="w-full sm:w-auto"
+            onClick={focusRegisterForm}
+          >
+            Cadastrar estudante
+          </Button>
+        </div>
 
         <Modal
           open={isRegistering}

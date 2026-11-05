@@ -1,28 +1,13 @@
-import { Button } from "@/core/components/ui";
-import { Plus } from "lucide-react";
+import { Header } from "@/core/components/Header";
 
-interface PageHeaderProps {
-  onRegisterClick: () => void;
-}
-
-export function PageHeader({ onRegisterClick }: PageHeaderProps) {
-
+export function PageHeader() {
   return (
-    <header className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+    <Header>
       <div>
         <h1 className="text-3xl font-bold tracking-tight">
           Gestão de alunos & Diretórios Acadêmicos
         </h1>
       </div>
-
-      <Button
-        type="button"
-        leftIcon={<Plus size={18} aria-hidden="true" />}
-        className="w-full sm:w-auto"
-        onClick={onRegisterClick}
-      >
-        Cadastrar estudante
-      </Button>
-    </header>
+    </Header>
   );
 }
